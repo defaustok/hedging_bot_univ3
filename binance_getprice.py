@@ -142,6 +142,7 @@ def get_historical_klines(symbol, interval, start_str, end_str=None):
     hist_df['Close Time'] = pd.to_datetime(hist_df['Close Time']/1000, unit='s')
     numeric_columns = ['Open', 'High', 'Low', 'Close', 'Volume', 'Quote Asset Volume', 'TB Base Volume', 'TB Quote Volume']
     hist_df[numeric_columns] = hist_df[numeric_columns].apply(pd.to_numeric, axis=1)
+    hist_df = hist_df.set_index('Open Time')
 
     
     return hist_df
